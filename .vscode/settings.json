@@ -1,0 +1,6 @@
+{
+    "cmake.sourceDirectory": "/home/arthur/Art",
+    "files.associations": {
+        "chrono": "cpp"
+    }
+}

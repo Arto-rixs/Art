@@ -1,0 +1,216 @@
+2024-06-02 14:11:02 - Server started.
+2024-06-02 14:11:50 - Client connected
+2024-06-02 14:14:48 - Server stopped.
+2024-06-02 14:16:06 - Server started.
+2024-06-02 14:16:15 - Client connected
+2024-06-02 14:18:00 - Server closed.
+2024-06-02 14:18:00 - Server stopped.
+2024-06-02 16:12:57 - Server stopped.
+2024-06-02 16:13:02 - Server started.
+2024-06-02 16:13:02 - Server stopped.
+2024-06-02 16:13:10 - Server started.
+2024-06-02 16:13:21 - Client connected
+2024-06-02 16:15:40 - Server stopped.
+2024-06-02 16:19:47 - Server started.
+2024-06-02 16:19:54 - Client connected
+2024-06-02 16:20:53 - Server stopped.
+2024-06-02 16:21:42 - Server started.
+2024-06-02 16:21:51 - Client connected
+2024-06-02 16:27:41 - Server stopped.
+2024-06-02 16:29:28 - Server started.
+2024-06-02 16:29:36 - Client connected
+2024-06-02 16:29:45 - Received command: cdelku
+2024-06-02 16:29:55 - Received command: cdelku
+2024-06-02 16:29:58 - Received command: cdelku
+2024-06-02 16:37:15 - Server stopped.
+2024-06-02 16:37:34 - Server started.
+2024-06-02 16:37:40 - Client connected
+2024-06-02 16:37:44 - Received command: cdelku
+2024-06-02 16:38:29 - Server stopped.
+2024-06-02 16:38:43 - Server started.
+2024-06-02 16:38:49 - Client connected
+2024-06-02 16:38:53 - Server stopped.
+2024-06-02 16:52:59 - Server started.
+2024-06-02 16:53:05 - Client connected
+2024-06-02 16:53:09 - Received command: cdelku
+2024-06-02 16:53:19 - Client disconnected
+2024-06-02 16:53:26 - Server stopped.
+2024-06-02 18:21:08 - Client connected
+2024-06-02 18:21:13 - Received command: cdelku
+2024-06-02 18:21:54 - Client disconnected
+2024-06-02 18:22:01 - Client connected
+2024-06-02 18:22:32 - Client disconnected
+2024-06-02 18:22:35 - Client connected
+2024-06-02 18:22:50 - Client disconnected
+2024-06-02 18:22:53 - Client connected
+2024-06-02 18:23:02 - Received command: cdelku
+2024-06-02 18:29:08 - Client disconnected
+2024-06-02 18:29:11 - Client connected
+2024-06-02 18:29:17 - Received command: cdelku
+2024-06-02 18:29:21 - Received command: cdelku
+2024-06-02 18:29:40 - Client disconnected
+2024-06-02 18:29:47 - Client connected
+2024-06-02 18:31:02 - Client disconnected
+2024-06-02 18:31:05 - Client connected
+2024-06-02 18:32:40 - Client disconnected
+2024-06-02 18:33:04 - Client connected
+2024-06-02 18:33:07 - Client disconnected
+2024-06-02 18:33:40 - Client connected
+2024-06-02 18:33:44 - Received command: cdelku
+2024-06-02 18:37:23 - Client disconnected
+2024-06-02 18:37:26 - Client connected
+2024-06-02 18:37:29 - Received command: cdelku
+2024-06-02 18:37:31 - Received command: cdelku
+2024-06-02 18:37:33 - Received command: cdelku
+2024-06-02 18:37:35 - Received command: cdelku
+2024-06-02 18:37:36 - Received command: cdelku
+2024-06-02 18:37:37 - Received command: cdelku
+2024-06-02 18:37:38 - Received command: cdelku
+2024-06-02 18:37:40 - Received command: cdelku
+2024-06-02 18:37:41 - Received command: cdelku
+2024-06-02 18:37:42 - Received command: cdelku
+2024-06-02 18:37:53 - Client disconnected
+2024-06-02 18:37:58 - Client connected
+2024-06-02 18:38:14 - Client disconnected
+2024-06-02 18:38:18 - Client connected
+2024-06-02 18:38:20 - Received command: cdelku
+2024-06-02 18:38:24 - Received command: cdelku
+2024-06-02 18:43:05 - Client disconnected
+2024-06-02 18:43:14 - Client connected
+2024-06-02 18:43:17 - Received command: cdelku
+2024-06-02 18:43:18 - Received command: cdelku
+2024-06-02 18:43:19 - Received command: cdelku
+2024-06-02 18:43:20 - Received command: cdelku
+2024-06-02 18:43:21 - Received command: cdelku
+2024-06-02 18:43:22 - Received command: cdelku
+2024-06-02 18:45:06 - Client disconnected
+2024-06-02 18:45:12 - Server stopped.
+2024-06-02 18:45:49 - Server started.
+2024-06-02 18:45:58 - Client connected
+2024-06-02 18:46:04 - Received command: cdelku
+2024-06-02 18:46:56 - Client disconnected
+2024-06-02 18:48:48 - Server stopped.
+2024-06-02 18:49:22 - Server started.
+2024-06-02 18:49:31 - Client connected
+2024-06-02 18:49:37 - Received command: cdelku
+2024-06-02 18:49:53 - Received command: cdelku
+2024-06-02 19:04:00 - Client disconnected
+2024-06-02 19:04:01 - Server closed.
+2024-06-02 19:04:01 - Server stopped.
+2024-06-03 13:28:27 - Server stopped.
+2024-06-03 13:28:30 - Server started.
+2024-06-03 13:28:45 - Client connected
+2024-06-03 13:28:52 - Received command: cdelku
+2024-06-03 15:00:18 - Client disconnected
+2024-06-03 15:00:26 - Server stopped.
+2024-06-03 15:30:43 - Server started.
+2024-06-03 15:30:51 - Client connected
+2024-06-03 15:31:10 - Client disconnected
+2024-06-03 15:31:18 - Client connected
+2024-06-03 15:31:22 - Received command: cdelku
+2024-06-03 15:37:14 - Client disconnected
+2024-06-03 15:37:17 - Client connected
+2024-06-03 15:42:16 - Client disconnected
+2024-06-03 15:42:19 - Client connected
+2024-06-03 15:42:24 - Received command: AllTrade
+2024-06-03 15:42:31 - Received command: AllTrade
+2024-06-03 15:42:39 - Received command: cdelku
+2024-06-03 15:42:40 - Received command: cdelku
+2024-06-03 15:42:41 - Received command: cdelku
+2024-06-03 15:42:42 - Received command: cdelku
+2024-06-03 15:42:43 - Received command: cdelku
+2024-06-03 15:42:46 - Received command: AllTrade
+2024-06-03 15:42:53 - Received command: AllTrade
+2024-06-03 15:43:59 - Received command: AllTrade
+2024-06-03 15:44:05 - Received command: cdelku
+2024-06-03 15:44:06 - Received command: cdelku
+2024-06-03 15:44:07 - Received command: cdelku
+2024-06-03 15:44:08 - Received command: cdelku
+2024-06-03 15:44:09 - Received command: cdelku
+2024-06-03 15:44:10 - Received command: cdelku
+2024-06-03 15:44:14 - Received command: AllTrade
+2024-06-03 15:44:19 - Received command: AllTrade
+2024-06-03 16:02:00 - Client disconnected
+2024-06-03 16:02:03 - Client connected
+2024-06-03 16:02:13 - Client disconnected
+2024-06-03 16:02:16 - Client connected
+2024-06-03 16:02:24 - Client disconnected
+2024-06-03 16:02:27 - Client connected
+2024-06-03 16:03:40 - Client disconnected
+2024-06-03 16:03:43 - Client connected
+2024-06-03 16:03:50 - Received command: AllTrade
+2024-06-03 18:34:06 - Received command: AllTrade
+2024-06-03 18:34:11 - Received command: AllTrade
+2024-06-03 18:34:15 - Received command: cdelku
+2024-06-03 18:34:16 - Received command: cdelku
+2024-06-03 18:34:17 - Received command: cdelku
+2024-06-03 18:34:18 - Received command: cdelku
+2024-06-03 18:34:19 - Received command: cdelku
+2024-06-03 18:34:20 - Received command: cdelku
+2024-06-03 18:34:21 - Received command: cdelku
+2024-06-03 18:34:22 - Received command: cdelku
+2024-06-03 18:34:23 - Received command: cdelku
+2024-06-03 18:34:24 - Received command: cdelku
+2024-06-03 18:34:25 - Received command: cdelku
+2024-06-03 18:34:26 - Received command: cdelku
+2024-06-03 18:34:27 - Received command: cdelku
+2024-06-03 18:34:28 - Received command: cdelku
+2024-06-03 18:34:29 - Received command: cdelku
+2024-06-03 18:34:30 - Received command: AllTrade
+2024-06-03 18:34:42 - Received command: cdelku
+2024-06-03 19:54:23 - Server closed.
+2024-06-03 19:54:23 - Server stopped.
+2024-06-03 19:56:20 - Server stopped.
+2024-06-03 19:57:35 - Server started.
+2024-06-03 19:57:46 - Client connected
+2024-06-03 19:57:53 - Received command: cdelku
+2024-06-03 20:12:34 - Server stopped.
+2024-06-03 20:12:36 - Server started.
+2024-06-03 20:12:43 - Client connected
+2024-06-03 20:12:45 - Received command: cdelku
+2024-06-03 20:19:49 - Server stopped.
+2024-06-03 20:19:52 - Server started.
+2024-06-03 20:19:58 - Client connected
+2024-06-03 20:20:01 - Received command: cdelku
+2024-06-03 20:20:06 - Received command: AllTrade
+2024-06-03 20:20:09 - Received command: cdelku
+2024-06-03 20:20:12 - Received command: AllTrade
+2024-06-03 20:20:13 - Received command: AllTrade
+2024-06-03 20:20:14 - Received command: AllTrade
+2024-06-03 20:28:28 - Received command: cdelku
+2024-06-03 20:28:32 - Received command: AllTrade
+2024-06-03 20:31:02 - Server stopped.
+2024-06-03 20:31:37 - Server started.
+2024-06-03 20:31:44 - Client connected
+2024-06-03 20:31:49 - Received command: cdelku
+2024-06-03 20:31:53 - Received command: cdelku
+2024-06-03 20:31:58 - Received command: cdelku
+2024-06-03 20:32:00 - Received command: cdelku
+2024-06-03 20:32:04 - Received command: AllTrade
+2024-06-03 20:37:57 - Server stopped.
+2024-06-03 20:38:18 - Server started.
+2024-06-03 20:38:25 - Client connected
+2024-06-03 20:38:28 - Received command: cdelku
+2024-06-03 20:38:33 - Received command: cdelku
+2024-06-03 20:38:36 - Received command: cdelku
+2024-06-03 20:38:38 - Received command: AllTrade
+2024-06-03 20:38:39 - Received command: AllTrade
+2024-06-03 20:38:40 - Received command: AllTrade
+2024-06-03 20:38:41 - Received command: AllTrade
+2024-06-03 20:38:42 - Received command: AllTrade
+2024-06-03 20:38:43 - Received command: AllTrade
+2024-06-03 20:38:44 - Received command: AllTrade
+2024-06-03 20:38:47 - Received command: cdelku
+2024-06-03 20:38:49 - Received command: cdelku
+2024-06-03 20:38:50 - Received command: cdelku
+2024-06-03 20:38:51 - Received command: cdelku
+2024-06-03 20:38:52 - Received command: cdelku
+2024-06-03 20:38:56 - Received command: cdelku
+2024-06-03 20:38:57 - Received command: cdelku
+2024-06-03 20:38:58 - Received command: cdelku
+2024-06-03 20:39:12 - Received command: cdelku
+2024-06-03 20:39:25 - Received command: cdelku
+2024-06-03 20:39:30 - Received command: AllTrade
+2024-06-03 21:00:55 - Received command: AllTrade
+2024-06-03 21:00:58 - Received command: AllTrade
+2024-06-03 21:12:29 - Server stopped.

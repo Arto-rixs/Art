@@ -1,0 +1,1019 @@
+//@version=5
+strategy("Brent Trading Bot", overlay=true)
+
+// Входные параметры
+
+support_level = 65.64
+resistance_level = 90.64
+fast_length = input.int(9, title="Fast MA Length", minval=1)
+slow_length = input.int(21, title="Slow MA Length", minval=1)
+
+// Скользящие средние
+fast_ma = ta.sma(close, fast_length)
+slow_ma = ta.sma(close, slow_length)
+
+// Уровни поддержки и сопротивления
+hline(support_level, title="Support Level", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(resistance_level, title="Resistance Level", color=color.red, linewidth=2, linestyle=hline.style_dotted)
+
+// Условия для длинной позиции
+long_condition = (close <= support_level) and (fast_ma > slow_ma)
+
+// Условия для короткой позиции
+short_condition = (close >= resistance_level) and (fast_ma < slow_ma)
+
+// Вход в длинную позицию
+if (long_condition)
+    strategy.entry("Long", strategy.long)
+
+// Вход в короткую позицию
+if (short_condition)
+    strategy.entry("Short", strategy.short)
+
+// Отображение сигналов на графике
+plotshape(series=long_condition, title="Buy Signal", location=location.belowbar, color=color.green, style=shape.labelup, text="BUY")
+plotshape(series=short_condition, title="Sell Signal", location=location.abovebar, color=color.red, style=shape.labeldown, text="SELL")
+
+// Закрытие позиции при пересечении скользящих средних в обратную сторону
+exit_long = ta.crossunder(fast_ma, slow_ma)
+exit_short = ta.crossover(fast_ma, slow_ma)
+
+if (exit_long)
+    strategy.close("Long")
+
+if (exit_short)
+    strategy.close("Short")
+
+// 0.2 ---------------------------------------------------------
+
+//@version=5
+strategy("Brent Trading Bot", overlay=true)
+
+// Входные параметры
+HL_1 = 15.64
+HL_2 = 40.64
+HL_3 = 65.64
+HL_4 = 90.64
+HL_5 = 115.64
+HL_6 = 140.64
+HL_7 = 165.64
+
+// Уровни поддержки и сопротивления
+hline(HL_1, title="HL_1", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_2, title="HL_2", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_3, title="HL_3", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_4, title="HL_4", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_5, title="HL_5", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_6, title="HL_6", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_7, title="HL_7", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+
+// Условия для покупки
+long_condition_1 = ta.crossover(close, HL_1)
+long_condition_2 = ta.crossover(close, HL_2)
+long_condition_3 = ta.crossover(close, HL_3)
+long_condition_4 = ta.crossover(close, HL_4)
+long_condition_5 = ta.crossover(close, HL_5)
+long_condition_6 = ta.crossover(close, HL_6)
+long_condition_7 = ta.crossover(close, HL_7)
+
+// Условия для продажи
+short_condition_1 = ta.crossunder(close, HL_1)
+short_condition_2 = ta.crossunder(close, HL_2)
+short_condition_3 = ta.crossunder(close, HL_3)
+short_condition_4 = ta.crossunder(close, HL_4)
+short_condition_5 = ta.crossunder(close, HL_5)
+short_condition_6 = ta.crossunder(close, HL_6)
+short_condition_7 = ta.crossunder(close, HL_7)
+
+// Флаги для открытия позиции
+var bool long_order_placed = false
+var bool short_order_placed = false
+
+// Вход в длинную позицию
+if (long_condition_1 or long_condition_2 or long_condition_3 or long_condition_4 or long_condition_5 or long_condition_6 or long_condition_7)
+    if not long_order_placed
+        strategy.order("LongLimit", strategy.long, qty=1, limit=HL_1, when=long_condition_1)
+        strategy.order("LongLimit", strategy.long, qty=1, limit=HL_2, when=long_condition_2)
+        strategy.order("LongLimit", strategy.long, qty=1, limit=HL_3, when=long_condition_3)
+        strategy.order("LongLimit", strategy.long, qty=1, limit=HL_4, when=long_condition_4)
+        strategy.order("LongLimit", strategy.long, qty=1, limit=HL_5, when=long_condition_5)
+        strategy.order("LongLimit", strategy.long, qty=1, limit=HL_6, when=long_condition_6)
+        strategy.order("LongLimit", strategy.long, qty=1, limit=HL_7, when=long_condition_7)
+        long_order_placed := true
+
+// Вход в короткую позицию
+if (short_condition_1 or short_condition_2 or short_condition_3 or short_condition_4 or short_condition_5 or short_condition_6 or short_condition_7)
+    if not short_order_placed
+        strategy.order("ShortLimit", strategy.short, qty=1, limit=HL_1, when=short_condition_1)
+        strategy.order("ShortLimit", strategy.short, qty=1, limit=HL_2, when=short_condition_2)
+        strategy.order("ShortLimit", strategy.short, qty=1, limit=HL_3, when=short_condition_3)
+        strategy.order("ShortLimit", strategy.short, qty=1, limit=HL_4, when=short_condition_4)
+        strategy.order("ShortLimit", strategy.short, qty=1, limit=HL_5, when=short_condition_5)
+        strategy.order("ShortLimit", strategy.short, qty=1, limit=HL_6, when=short_condition_6)
+        strategy.order("ShortLimit", strategy.short, qty=1, limit=HL_7, when=short_condition_7)
+        short_order_placed := true
+
+// Сброс флагов при закрытии позиций
+if (not strategy.opentrades)
+    long_order_placed := false
+    short_order_placed := false
+
+// Отображение сигналов на графике
+plotshape(series=long_condition_1 or long_condition_2 or long_condition_3 or long_condition_4 or long_condition_5 or long_condition_6 or long_condition_7, title="Buy Signal", location=location.belowbar, color=color.green, style=shape.labelup, text="BUY")
+plotshape(series=short_condition_1 or short_condition_2 or short_condition_3 or short_condition_4 or short_condition_5 or short_condition_6 or short_condition_7, title="Sell Signal", location=location.abovebar
+
+
+0.3 ----------------------------------------------------
+//@version=5
+strategy("Brent Trading Bot", overlay=true)
+
+// Входные параметры
+HL_1 = 15.64
+HL_2 = 40.64
+HL_3 = 65.64
+HL_4 = 90.64
+HL_5 = 115.64
+HL_6 = 140.64
+HL_7 = 165.64
+
+// Уровни поддержки и сопротивления
+hline(HL_1, title="HL_1", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_2, title="HL_2", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_3, title="HL_3", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_4, title="HL_4", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_5, title="HL_5", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_6, title="HL_6", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_7, title="HL_7", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+
+// Условия для покупки
+long_condition_1 = ta.crossover(close, HL_1)
+long_condition_2 = ta.crossover(close, HL_2)
+long_condition_3 = ta.crossover(close, HL_3)
+long_condition_4 = ta.crossover(close, HL_4)
+long_condition_5 = ta.crossover(close, HL_5)
+long_condition_6 = ta.crossover(close, HL_6)
+long_condition_7 = ta.crossover(close, HL_7)
+
+// Условия для продажи
+short_condition_1 = ta.crossunder(close, HL_1)
+short_condition_2 = ta.crossunder(close, HL_2)
+short_condition_3 = ta.crossunder(close, HL_3)
+short_condition_4 = ta.crossunder(close, HL_4)
+short_condition_5 = ta.crossunder(close, HL_5)
+short_condition_6 = ta.crossunder(close, HL_6)
+short_condition_7 = ta.crossunder(close, HL_7)
+
+// Флаги для открытия позиции
+var bool long_order_placed = false
+var bool short_order_placed = false
+
+// Вход в длинную позицию
+if (long_condition_1 or long_condition_2 or long_condition_3 or long_condition_4 or long_condition_5 or long_condition_6 or long_condition_7)
+    if not long_order_placed
+        if (long_condition_1)
+            strategy.order("LongLimit_1", strategy.long, qty=1, limit=HL_1)
+        if (long_condition_2)
+            strategy.order("LongLimit_2", strategy.long, qty=1, limit=HL_2)
+        if (long_condition_3)
+            strategy.order("LongLimit_3", strategy.long, qty=1, limit=HL_3)
+        if (long_condition_4)
+            strategy.order("LongLimit_4", strategy.long, qty=1, limit=HL_4)
+        if (long_condition_5)
+            strategy.order("LongLimit_5", strategy.long, qty=1, limit=HL_5)
+        if (long_condition_6)
+            strategy.order("LongLimit_6", strategy.long, qty=1, limit=HL_6)
+        if (long_condition_7)
+            strategy.order("LongLimit_7", strategy.long, qty=1, limit=HL_7)
+        long_order_placed := true
+
+// Вход в короткую позицию
+if (short_condition_1 or short_condition_2 or short_condition_3 or short_condition_4 or short_condition_5 or short_condition_6 or short_condition_7)
+    if not short_order_placed
+        if (short_condition_1)
+            strategy.order("ShortLimit_1", strategy.short, qty=1, limit=HL_1)
+        if (short_condition_2)
+            strategy.order("ShortLimit_2", strategy.short, qty=1, limit=HL_2)
+        if (short_condition_3)
+            strategy.order("ShortLimit_3", strategy.short, qty=1, limit=HL_3)
+        if (short_condition_4)
+            strategy.order("ShortLimit_4", strategy.short, qty=1, limit=HL_4)
+        if (short_condition_5)
+            strategy.order("ShortLimit_5", strategy.short, qty=1, limit=HL_5)
+        if (short_condition_6)
+            strategy.order("ShortLimit_6", strategy.short, qty=1, limit=HL_6)
+        if (short_condition_7)
+            strategy.order("ShortLimit_7", strategy.short, qty=1, limit=HL_7)
+        short_order_placed := true
+
+// Сброс флагов при закрытии позиций
+if (strategy.opentrades == 0)
+    long_order_placed := false
+    short_order_placed := false
+
+// Отображение сигналов на графике
+plotshape(series=long_condition_1 or long_condition_2 or long_condition_3 or long_condition_4 or long_condition_5 or long_condition_6 or long_condition_7, title="Buy Signal", location=location.belowbar, color=color.green, style=shape.labelup, text="BUY")
+plotshape(series=short_condition_1 or short_condition_2 or short_condition_3 or short_condition_4 or short_condition_5 or short_condition_6 or short_condition_7, title="Sell Signal", location=location.abovebar, color=color.red, style=shape.labeldown, text="SELL")
+ 
+ 0.4 ----------------------------------------------------
+ //@version=5
+strategy("Brent Trading Bot", overlay=true)
+
+// Входные параметры
+HL_1 = 15.64
+HL_2 = 40.64
+HL_3 = 65.64
+HL_4 = 90.64
+HL_5 = 115.64
+HL_6 = 140.64
+HL_7 = 165.64
+
+// Уровни поддержки и сопротивления
+hline(HL_1, title="HL_1", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_2, title="HL_2", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_3, title="HL_3", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_4, title="HL_4", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_5, title="HL_5", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_6, title="HL_6", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_7, title="HL_7", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+
+// Условия для покупки
+long_condition_1 = ta.crossover(close, HL_1)
+long_condition_2 = ta.crossover(close, HL_2)
+long_condition_3 = ta.crossover(close, HL_3)
+long_condition_4 = ta.crossover(close, HL_4)
+long_condition_5 = ta.crossover(close, HL_5)
+long_condition_6 = ta.crossover(close, HL_6)
+long_condition_7 = ta.crossover(close, HL_7)
+
+// Условия для продажи
+short_condition_1 = ta.crossunder(close, HL_1)
+short_condition_2 = ta.crossunder(close, HL_2)
+short_condition_3 = ta.crossunder(close, HL_3)
+short_condition_4 = ta.crossunder(close, HL_4)
+short_condition_5 = ta.crossunder(close, HL_5)
+short_condition_6 = ta.crossunder(close, HL_6)
+short_condition_7 = ta.crossunder(close, HL_7)
+
+// Флаги для открытия позиции
+var bool long_order_placed = false
+var bool short_order_placed = false
+
+// Вход в длинную позицию
+if (long_condition_1 or long_condition_2 or long_condition_3 or long_condition_4 or long_condition_5 or long_condition_6 or long_condition_7)
+    if not (long_order_placed)
+        if (long_condition_1)
+            strategy.order("LongLimit_1", strategy.long, qty=1, limit=HL_1)
+        if (long_condition_2)
+            strategy.order("LongLimit_2", strategy.long, qty=1, limit=HL_2)
+        if (long_condition_3)
+            strategy.order("LongLimit_3", strategy.long, qty=1, limit=HL_3)
+        if (long_condition_4)
+            strategy.order("LongLimit_4", strategy.long, qty=1, limit=HL_4)
+        if (long_condition_5)
+            strategy.order("LongLimit_5", strategy.long, qty=1, limit=HL_5)
+        if (long_condition_6)
+            strategy.order("LongLimit_6", strategy.long, qty=1, limit=HL_6)
+        if (long_condition_7)
+            strategy.order("LongLimit_7", strategy.long, qty=1, limit=HL_7)
+        long_order_placed := true
+
+// Вход в короткую позицию
+if (short_condition_1 or short_condition_2 or short_condition_3 or short_condition_4 or short_condition_5 or short_condition_6 or short_condition_7)
+    if not (short_order_placed)
+        if (short_condition_1)
+            strategy.order("ShortLimit_1", strategy.short, qty=1, limit=HL_1)
+        if (short_condition_2)
+            strategy.order("ShortLimit_2", strategy.short, qty=1, limit=HL_2)
+        if (short_condition_3)
+            strategy.order("ShortLimit_3", strategy.short, qty=1, limit=HL_3)
+        if (short_condition_4)
+            strategy.order("ShortLimit_4", strategy.short, qty=1, limit=HL_4)
+        if (short_condition_5)
+            strategy.order("ShortLimit_5", strategy.short, qty=1, limit=HL_5)
+        if (short_condition_6)
+            strategy.order("ShortLimit_6", strategy.short, qty=1, limit=HL_6)
+        if (short_condition_7)
+            strategy.order("ShortLimit_7", strategy.short, qty=1, limit=HL_7)
+        short_order_placed := true
+
+// Установка стоп-лосса на 500 пунктов
+if (strategy.opentrades > 0)
+    avg_price = strategy.position_avg_price
+    if (strategy.position_size > 0)  // Для длинной позиции
+        stop_loss = avg_price - 500 * syminfo.mintick
+        strategy.exit("Stop Loss", stop=stop_loss)
+    if (strategy.position_size < 0)  // Для короткой позиции
+        stop_loss = avg_price + 500 * syminfo.mintick
+        strategy.exit("Stop Loss", stop=stop_loss)
+
+// Закрытие позиции на уровнях
+if (strategy.position_size > 0)
+    if (ta.crossunder(close, HL_1) or ta.crossunder(close, HL_2) or ta.crossunder(close, HL_3) or ta.crossunder(close, HL_4) or ta.crossunder(close, HL_5) or ta.crossunder(close, HL_6) or ta.crossunder(close, HL_7))
+        strategy.close("Long")
+if (strategy.position_size < 0)
+    if (ta.crossover(close, HL_1) or ta.crossover(close, HL_2) or ta.crossover(close, HL_3) or ta.crossover(close, HL_4) or ta.crossover(close, HL_5) or ta.crossover(close, HL_6) or ta.crossover(close, HL_7))
+        strategy.close("Short")
+
+// Сброс флагов при закрытии позиций
+if (strategy.opentrades == 0)
+    long_order_placed := false
+    short_order_placed := false
+
+// Отображение сигналов на графике
+plotshape(series=long_condition_1 or long_condition_2 or long_condition_3 or long_condition_4 or long_condition_5 or long_condition_6 or long_condition_7, title="Buy Signal", location=location.belowbar, color=color.green, style=shape.labelup, text="BUY")
+plotshape(series=short_condition_1 or short_condition_2 or short_condition_3 or short_condition_4 or short_condition_5 or short_condition_6 or short_condition_7, title="Sell Signal", location=location.abovebar, color=color.red, style=shape.labeldown, text="SELL")
+
+0.5 ---------------------------------------
+//@version=5
+strategy("Brent Trading Bot", overlay=true)
+
+// Входные параметры
+HL_1 = 15.64
+HL_2 = 40.64
+HL_3 = 65.64
+HL_4 = 90.64
+HL_5 = 115.64
+HL_6 = 140.64
+HL_7 = 165.64
+
+// Уровни поддержки и сопротивления
+hline(HL_1, title="HL_1", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_2, title="HL_2", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_3, title="HL_3", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_4, title="HL_4", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_5, title="HL_5", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_6, title="HL_6", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_7, title="HL_7", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+
+// Условия для покупки
+long_condition_1 = ta.crossover(close, HL_1)
+long_condition_2 = ta.crossover(close, HL_2)
+long_condition_3 = ta.crossover(close, HL_3)
+long_condition_4 = ta.crossover(close, HL_4)
+long_condition_5 = ta.crossover(close, HL_5)
+long_condition_6 = ta.crossover(close, HL_6)
+long_condition_7 = ta.crossover(close, HL_7)
+
+// Условия для продажи
+short_condition_1 = ta.crossunder(close, HL_1)
+short_condition_2 = ta.crossunder(close, HL_2)
+short_condition_3 = ta.crossunder(close, HL_3)
+short_condition_4 = ta.crossunder(close, HL_4)
+short_condition_5 = ta.crossunder(close, HL_5)
+short_condition_6 = ta.crossunder(close, HL_6)
+short_condition_7 = ta.crossunder(close, HL_7)
+
+// Установка стоп-лосса на 500 пунктов
+if (strategy.opentrades > 0)
+    avg_price = strategy.position_avg_price
+    if (strategy.position_size > 0)  // Для длинной позиции
+        stop_loss = avg_price - 500 * syminfo.mintick
+        strategy.exit("Stop Loss", stop=stop_loss)
+    if (strategy.position_size < 0)  // Для короткой позиции
+        stop_loss = avg_price + 500 * syminfo.mintick
+        strategy.exit("Stop Loss", stop=stop_loss)
+
+// Закрытие позиции на уровнях
+if (strategy.position_size > 0)
+    if (ta.crossunder(close, HL_1) or ta.crossunder(close, HL_2) or ta.crossunder(close, HL_3) or ta.crossunder(close, HL_4) or ta.crossunder(close, HL_5) or ta.crossunder(close, HL_6) or ta.crossunder(close, HL_7))
+        strategy.close("Long")
+if (strategy.position_size < 0)
+    if (ta.crossover(close, HL_1) or ta.crossover(close, HL_2) or ta.crossover(close, HL_3) or ta.crossover(close, HL_4) or ta.crossover(close, HL_5) or ta.crossover(close, HL_6) or ta.crossover(close, HL_7))
+        strategy.close("Short")
+
+// Флаги для открытия позиции
+var bool long_order_placed = false
+var bool short_order_placed = false
+
+// Вход в длинную позицию
+if (strategy.position_size == 0)  // Проверка на отсутствие открытой позиции
+    if (long_condition_1 or long_condition_2 or long_condition_3 or long_condition_4 or long_condition_5 or long_condition_6 or long_condition_7)
+        if not long_order_placed
+            if (long_condition_1)
+                strategy.order("LongLimit_1", strategy.long, qty=1, limit=HL_1)
+            if (long_condition_2)
+                strategy.order("LongLimit_2", strategy.long, qty=1, limit=HL_2)
+            if (long_condition_3)
+                strategy.order("LongLimit_3", strategy.long, qty=1, limit=HL_3)
+            if (long_condition_4)
+                strategy.order("LongLimit_4", strategy.long, qty=1, limit=HL_4)
+            if (long_condition_5)
+                strategy.order("LongLimit_5", strategy.long, qty=1, limit=HL_5)
+            if (long_condition_6)
+                strategy.order("LongLimit_6", strategy.long, qty=1, limit=HL_6)
+            if (long_condition_7)
+                strategy.order("LongLimit_7", strategy.long, qty=1, limit=HL_7)
+            long_order_placed := true
+
+// Вход в короткую позицию
+if (strategy.position_size == 0)  // Проверка на отсутствие открытой позиции
+    if (short_condition_1 or short_condition_2 or short_condition_3 or short_condition_4 or short_condition_5 or short_condition_6 or short_condition_7)
+        if not short_order_placed
+            if (short_condition_1)
+                strategy.order("ShortLimit_1", strategy.short, qty=1, limit=HL_1)
+            if (short_condition_2)
+                strategy.order("ShortLimit_2", strategy.short, qty=1, limit=HL_2)
+            if (short_condition_3)
+                strategy.order("ShortLimit_3", strategy.short, qty=1, limit=HL_3)
+            if (short_condition_4)
+                strategy.order("ShortLimit_4", strategy.short, qty=1, limit=HL_4)
+            if (short_condition_5)
+                strategy.order("ShortLimit_5", strategy.short, qty=1, limit=HL_5)
+            if (short_condition_6)
+                strategy.order("ShortLimit_6", strategy.short, qty=1, limit=HL_6)
+            if (short_condition_7)
+                strategy.order("ShortLimit_7", strategy.short, qty=1, limit=HL_7)
+            short_order_placed := true
+
+// Сброс флагов при закрытии позиций
+if (strategy.opentrades == 0)
+    long_order_placed := false
+    short_order_placed := false
+
+// Отображение сигналов на графике
+plotshape(series=long_condition_1 or long_condition_2 or long_condition_3 or long_condition_4 or long_condition_5 or long_condition_6 or long_condition_7, title="Buy Signal", location=location.belowbar, color=color.green, style=shape.labelup, text="BUY")
+plotshape(series=short_condition_1 or short_condition_2 or short_condition_3 or short_condition_4 or short_condition_5 or short_condition_6 or short_condition_7, title="Sell Signal", location=location.abovebar, color=color.red, style=shape.labeldown, text="SELL")
+
+23 ------------------------
+//@version=5
+strategy("Brent-1", overlay=true)
+
+// Входные параметры
+HL_1 = 15.64
+HL_2 = 40.64
+HL_3 = 65.64
+HL_4 = 90.64
+HL_5 = 115.64
+HL_6 = 140.64
+HL_7 = 165.64
+
+// Calculate crossover and crossunder conditions
+long_cross = ta.crossover(close, HL_1) or ta.crossover(close, HL_2) or ta.crossover(close, HL_3) or ta.crossover(close, HL_4) or ta.crossover(close, HL_5) or ta.crossover(close, HL_6) or ta.crossover(close, HL_7)
+short_cross = ta.crossunder(close, HL_1) or ta.crossunder(close, HL_2) or ta.crossunder(close, HL_3) or ta.crossunder(close, HL_4) or ta.crossunder(close, HL_5) or ta.crossunder(close, HL_6) or ta.crossunder(close, HL_7)
+
+// Уровни поддержки и сопротивления
+hline(HL_1, title="HL_1", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_2, title="HL_2", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_3, title="HL_3", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_4, title="HL_4", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_5, title="HL_5", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_6, title="HL_6", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_7, title="HL_7", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+
+// Условия для покупки
+long_condition_1 = ta.crossover(close, HL_1)
+long_condition_2 = ta.crossover(close, HL_2)
+long_condition_3 = ta.crossover(close, HL_3)
+long_condition_4 = ta.crossover(close, HL_4)
+long_condition_5 = ta.crossover(close, HL_5)
+long_condition_6 = ta.crossover(close, HL_6)
+long_condition_7 = ta.crossover(close, HL_7)
+
+// Условия для продажи
+short_condition_1 = ta.crossunder(close, HL_1)
+short_condition_2 = ta.crossunder(close, HL_2)
+short_condition_3 = ta.crossunder(close, HL_3)
+short_condition_4 = ta.crossunder(close, HL_4)
+short_condition_5 = ta.crossunder(close, HL_5)
+short_condition_6 = ta.crossunder(close, HL_6)
+short_condition_7 = ta.crossunder(close, HL_7)
+
+// Установка стоп-лосса на 500 пунктов
+if (strategy.opentrades > 0)
+    avg_price = strategy.position_avg_price
+    if (strategy.position_size > 0)  // Для длинной позиции (покупки)
+        stop_loss = avg_price - 500 * syminfo.mintick
+        take_profit = avg_price + 2500 * syminfo.mintick
+        strategy.exit("Exit Long", stop=stop_loss, limit=take_profit)
+    if (strategy.position_size < 0)  // Для короткой позиции (продажи)
+        stop_loss = avg_price + 500 * syminfo.mintick
+        take_profit = avg_price - 2500 * syminfo.mintick
+        strategy.exit("Exit Short", stop=stop_loss, limit=take_profit)
+
+
+// Закрытие позиции на уровнях
+if (strategy.position_size > 0)
+    if (short_cross)
+        strategy.close("Long")
+if (strategy.position_size < 0)
+    if (long_cross)
+        strategy.close("Short")
+
+// Флаги для открытия позиции
+var bool long_order_placed = false
+var bool short_order_placed = false
+
+// Вход в длинную позицию
+if (strategy.position_size == 0)  // Проверка на отсутствие открытой позиции
+    if (long_cross)
+        if not long_order_placed
+            if (long_condition_1)
+                strategy.order("LongLimit_1", strategy.long, qty=1, limit=HL_1)
+            if (long_condition_2)
+                strategy.order("LongLimit_2", strategy.long, qty=1, limit=HL_2)
+            if (long_condition_3)
+                strategy.order("LongLimit_3", strategy.long, qty=1, limit=HL_3)
+            if (long_condition_4)
+                strategy.order("LongLimit_4", strategy.long, qty=1, limit=HL_4)
+            if (long_condition_5)
+                strategy.order("LongLimit_5", strategy.long, qty=1, limit=HL_5)
+            if (long_condition_6)
+                strategy.order("LongLimit_6", strategy.long, qty=1, limit=HL_6)
+            if (long_condition_7)
+                strategy.order("LongLimit_7", strategy.long, qty=1, limit=HL_7)
+            long_order_placed := true
+
+// Вход в короткую позицию
+if (strategy.position_size == 0)  // Проверка на отсутствие открытой позиции
+    if (short_cross)
+        if not short_order_placed
+            if (short_condition_1)
+                strategy.order("ShortLimit_1", strategy.short, qty=1, limit=HL_1)
+            if (short_condition_2)
+                strategy.order("ShortLimit_2", strategy.short, qty=1, limit=HL_2)
+            if (short_condition_3)
+                strategy.order("ShortLimit_3", strategy.short, qty=1, limit=HL_3)
+            if (short_condition_4)
+                strategy.order("ShortLimit_4", strategy.short, qty=1, limit=HL_4)
+            if (short_condition_5)
+                strategy.order("ShortLimit_5", strategy.short, qty=1, limit=HL_5)
+            if (short_condition_6)
+                strategy.order("ShortLimit_6", strategy.short, qty=1, limit=HL_6)
+            if (short_condition_7)
+                strategy.order("ShortLimit_7", strategy.short, qty=1, limit=HL_7)
+            short_order_placed := true
+
+// Сброс флагов при закрытии позиций
+if (strategy.opentrades == 0)
+    long_order_placed := false
+    short_order_placed := false
+
+// Отображение сигналов на графике
+plotshape(series=long_cross, title="Buy Signal", location=location.belowbar, color=color.green, style=shape.labelup, text="BUY")
+plotshape(series=short_cross, title="Sell Signal", location=location.abovebar, color=color.red, style=shape.labeldown, text="SELL")
+
+(странная версия)
+
+//@version=5
+strategy("Brent-1", overlay=true)
+
+// Входные параметры
+HL_1 = 15.64
+HL_2 = 40.64
+HL_3 = 65.64
+HL_4 = 90.64
+HL_5 = 115.64
+HL_6 = 140.64
+HL_7 = 165.64
+
+// Calculate crossover and crossunder conditions
+long_cross = ta.crossover(close, HL_1) or ta.crossover(close, HL_2) or ta.crossover(close, HL_3) or ta.crossover(close, HL_4) or ta.crossover(close, HL_5) or ta.crossover(close, HL_6) or ta.crossover(close, HL_7)
+short_cross = ta.crossunder(close, HL_1) or ta.crossunder(close, HL_2) or ta.crossunder(close, HL_3) or ta.crossunder(close, HL_4) or ta.crossunder(close, HL_5) or ta.crossunder(close, HL_6) or ta.crossunder(close, HL_7)
+
+// Уровни поддержки и сопротивления
+hline(HL_1, title="HL_1", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_2, title="HL_2", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_3, title="HL_3", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_4, title="HL_4", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_5, title="HL_5", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_6, title="HL_6", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_7, title="HL_7", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+
+// Условия для покупки
+long_condition_1 = ta.crossover(close, HL_1)
+long_condition_2 = ta.crossover(close, HL_2)
+long_condition_3 = ta.crossover(close, HL_3)
+long_condition_4 = ta.crossover(close, HL_4)
+long_condition_5 = ta.crossover(close, HL_5)
+long_condition_6 = ta.crossover(close, HL_6)
+long_condition_7 = ta.crossover(close, HL_7)
+
+// Условия для продажи
+short_condition_1 = ta.crossunder(close, HL_1)
+short_condition_2 = ta.crossunder(close, HL_2)
+short_condition_3 = ta.crossunder(close, HL_3)
+short_condition_4 = ta.crossunder(close, HL_4)
+short_condition_5 = ta.crossunder(close, HL_5)
+short_condition_6 = ta.crossunder(close, HL_6)
+short_condition_7 = ta.crossunder(close, HL_7)
+
+// Время ожидания прохода 500 пунктов
+var float entry_level = na
+
+// Проверка на вход в длинную позицию после пересечения уровней и прохода 500 пунктов вверх
+if (long_cross)
+    entry_level := na // Сброс уровня входа
+    if (long_condition_1)
+        entry_level := HL_1
+    if (long_condition_2)
+        entry_level := HL_2
+    if (long_condition_3)
+        entry_level := HL_3
+    if (long_condition_4)
+        entry_level := HL_4
+    if (long_condition_5)
+        entry_level := HL_5
+    if (long_condition_6)
+        entry_level := HL_6
+    if (long_condition_7)
+        entry_level := HL_7
+
+if (not na(entry_level) and close > entry_level + 500 * syminfo.mintick)
+    strategy.order("Long Limit", strategy.long, qty=1, limit=entry_level + 500 * syminfo.mintick)
+
+// Проверка на вход в короткую позицию после пересечения уровней и прохода 500 пунктов вниз
+if (short_cross)
+    entry_level := na // Сброс уровня входа
+    if (short_condition_1)
+        entry_level := HL_1
+    if (short_condition_2)
+        entry_level := HL_2
+    if (short_condition_3)
+        entry_level := HL_3
+    if (short_condition_4)
+        entry_level := HL_4
+    if (short_condition_5)
+        entry_level := HL_5
+    if (short_condition_6)
+        entry_level := HL_6
+    if (short_condition_7)
+        entry_level := HL_7
+
+if (not na(entry_level) and close < entry_level - 500 * syminfo.mintick)
+    strategy.order("Short Limit", strategy.short, qty=1, limit=entry_level - 500 * syminfo.mintick)
+
+// Установка стоп-лосса на 500 пунктов и тейк-профита на 2500 пунктов
+if (strategy.opentrades > 0)
+    avg_price = strategy.position_avg_price
+    if (strategy.position_size > 0)  // Для длинной позиции (покупки)
+        stop_loss = avg_price - 500 * syminfo.mintick
+        take_profit = avg_price + 2500 * syminfo.mintick
+        strategy.exit("Exit Long", stop=stop_loss, limit=take_profit)
+    if (strategy.position_size < 0)  // Для короткой позиции (продажи)
+        stop_loss = avg_price + 500 * syminfo.mintick
+        take_profit = avg_price - 2500 * syminfo.mintick
+        strategy.exit("Exit Short", stop=stop_loss, limit=take_profit)
+
+// Закрытие позиции на уровнях
+if (strategy.position_size > 0 and short_cross)
+    strategy.close("Long")
+if (strategy.position_size < 0 and long_cross)
+    strategy.close("Short")
+
+// Отображение сигналов на графике
+plotshape(series=long_cross, title="Buy Signal", location=location.belowbar, color=color.green, style=shape.labelup, text="BUY")
+plotshape(series=short_cross, title="Sell Signal", location=location.abovebar, color=color.red, style=shape.labeldown, text="SELL")
+-------------------
+//@version=5
+strategy("Single Trade Strategy", overlay=true)
+
+// Входные параметры
+HL_1 = 15.64
+HL_2 = 40.64
+HL_3 = 65.64
+HL_4 = 90.64
+HL_5 = 115.64
+HL_6 = 140.64
+
+// Уровни поддержки и сопротивления
+hline(HL_1, title="HL_1", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_2, title="HL_2", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_3, title="HL_3", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_4, title="HL_4", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_5, title="HL_5", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_6, title="HL_6", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+
+// Переменные для отслеживания состояния текущего ордера и уровня
+var bool order_placed = false
+var float entry_level = na
+
+// Функция для проверки и установки ордера
+check_and_set_order(level) =>
+    var bool order_status = order_placed
+    var float entry = entry_level
+    if not order_status
+        if high >= level + 5
+            entry := level
+            strategy.order("Long", strategy.long, stop=level - 5, limit=level + 25)
+            order_status := true
+        else if low <= level - 5
+            entry := level
+            strategy.order("Short", strategy.short, stop=level + 5, limit=level - 25)
+            order_status := true
+    [order_status, entry]
+
+// Проверка уровней
+[order_placed, entry_level] = check_and_set_order(HL_1)
+[order_placed, entry_level] := order_placed ? [order_placed, entry_level] : check_and_set_order(HL_2)
+[order_placed, entry_level] := order_placed ? [order_placed, entry_level] : check_and_set_order(HL_3)
+[order_placed, entry_level] := order_placed ? [order_placed, entry_level] : check_and_set_order(HL_4)
+[order_placed, entry_level] := order_placed ? [order_placed, entry_level] : check_and_set_order(HL_5)
+[order_placed, entry_level] := order_placed ? [order_placed, entry_level] : check_and_set_order(HL_6)
+
+// Условие для сброса переменных при закрытии всех позиций
+if strategy.opentrades == 0
+    order_placed := false
+--------------------------
+
+//@version=5
+strategy("Single Trade Strategy", overlay=true)
+
+// Входные параметры
+HL_1 = 15.64
+HL_2 = 40.64
+HL_3 = 65.64
+HL_4 = 90.64
+HL_5 = 115.64
+HL_6 = 140.64
+
+// Уровни поддержки и сопротивления
+hline(HL_1, title="HL_1", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_2, title="HL_2", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_3, title="HL_3", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_4, title="HL_4", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_5, title="HL_5", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+hline(HL_6, title="HL_6", color=color.green, linewidth=2, linestyle=hline.style_dotted)
+
+float k = 5.00
+
+// Уровень HL_3
+if (low <= HL_3 - k)
+    strategy.order(id="short3", direction=strategy.short, qty=1, limit=65.64)
+    strategy.exit(id="exit_short3", from_entry="short3", limit=40.64, stop=70.64)
+else if (high >= HL_3 + k)
+    strategy.order(id="long3", direction=strategy.long, qty=1, limit=65.64)
+    strategy.exit(id="exit_long3", from_entry="long3", limit=90.64, stop=60.64)
+
+// Уровень HL_2
+if (low <= HL_2 - k)
+    strategy.order(id="short2", direction=strategy.short, qty=1, limit=40.64)
+    strategy.exit(id="exit_short2", from_entry="short2", limit=15.64, stop=45.64)
+else if (high >= HL_2 + k)
+    strategy.order(id="long2", direction=strategy.long, qty=1, limit=40.64)
+    strategy.exit(id="exit_long2", from_entry="long2", limit=65.64, stop=35.64)
+
+// Уровень HL_1
+if (low <= HL_1 - k)
+    strategy.order(id="short1", direction=strategy.short, qty=1, limit=15.64)
+    strategy.exit(id="exit_short1", from_entry="short1", limit=5.64, stop=20.64)
+else if (high >= HL_1 + k)
+    strategy.order(id="long1", direction=strategy.long, qty=1, limit=15.64)
+    strategy.exit(id="exit_long1", from_entry="long1", limit=40.64, stop=10.64)
+
+// Уровень HL_4
+if (low <= HL_4 - k)
+    strategy.order(id="short4", direction=strategy.short, qty=1, limit=90.64)
+    strategy.exit(id="exit_short4", from_entry="short4", limit=65.64, stop=95.64)
+else if (high >= HL_4 + k)
+    strategy.order(id="long4", direction=strategy.long, qty=1, limit=90.64)
+    strategy.exit(id="exit_long4", from_entry="long4", limit=115.64, stop=85.64)
+
+// Уровень HL_5
+if (low <= HL_5 - k)
+    strategy.order(id="short5", direction=strategy.short, qty=1, limit=115.64)
+    strategy.exit(id="exit_short5", from_entry="short5", limit=90.64, stop=120.64)
+else if (high >= HL_5 + k)
+    strategy.order(id="long5", direction=strategy.long, qty=1, limit=115.64)
+    strategy.exit(id="exit_long5", from_entry="long5", limit=140.64, stop=110.64)
+
+// Уровень HL_6
+if (low <= HL_6 - k)
+    strategy.order(id="short6", direction=strategy.short, qty=1, limit=140.64)
+    strategy.exit(id="exit_short6", from_entry="short6", limit=115.64, stop=145.64)
+else if (high >= HL_6 + k)
+    strategy.order(id="long6", direction=strategy.long, qty=1, limit=140.64)
+    strategy.exit(id="exit_long6", from_entry="long6", limit=165.64, stop=135.64)
+----------------------------------
+
+
+
+//@version=5
+strategy("Single Trade Strategy", overlay=true)
+
+// Входные параметры
+HL_1 = 15.64
+HL_2 = 40.64
+HL_3 = 65.64
+HL_4 = 90.64
+HL_5 = 115.64
+HL_6 = 140.64
+
+// Уровни поддержки и сопротивления = 25
+hline(HL_1, title="HL_1", color=color.blue, linewidth=2, linestyle=hline.style_solid)
+hline(HL_2, title="HL_2", color=color.blue, linewidth=2, linestyle=hline.style_solid)
+hline(HL_3, title="HL_3", color=color.blue, linewidth=2, linestyle=hline.style_solid)
+hline(HL_4, title="HL_4", color=color.blue, linewidth=2, linestyle=hline.style_solid)
+hline(HL_5, title="HL_5", color=color.blue, linewidth=2, linestyle=hline.style_solid)
+hline(HL_6, title="HL_6", color=color.blue, linewidth=2, linestyle=hline.style_solid)
+
+float k = 5.00
+// заходы в 25 баксов
+// Уровень HL_3
+if (low <= HL_3 - k)
+    strategy.order(id="short3", direction=strategy.short, qty=1, limit=65.64)
+    strategy.exit(id="exit_short3", from_entry="short3", limit=40.64, stop=70.64)
+else if (high >= HL_3 + k)
+    strategy.order(id="long3", direction=strategy.long, qty=1, limit=65.64)
+    strategy.exit(id="exit_long3", from_entry="long3", limit=90.64, stop=60.64)
+
+// Уровень HL_2
+if (low <= HL_2 - k)
+    strategy.order(id="short2", direction=strategy.short, qty=1, limit=40.64)
+    strategy.exit(id="exit_short2", from_entry="short2", limit=15.64, stop=45.64)
+else if (high >= HL_2 + k)
+    strategy.order(id="long2", direction=strategy.long, qty=1, limit=40.64)
+    strategy.exit(id="exit_long2", from_entry="long2", limit=65.64, stop=35.64)
+
+// Уровень HL_1
+if (low <= HL_1 - k)
+    strategy.order(id="short1", direction=strategy.short, qty=1, limit=15.64)
+    strategy.exit(id="exit_short1", from_entry="short1", limit=5.64, stop=20.64)
+else if (high >= HL_1 + k)
+    strategy.order(id="long1", direction=strategy.long, qty=1, limit=15.64)
+    strategy.exit(id="exit_long1", from_entry="long1", limit=40.64, stop=10.64)
+
+// Уровень HL_4
+if (low <= HL_4 - k)
+    strategy.order(id="short4", direction=strategy.short, qty=1, limit=90.64)
+    strategy.exit(id="exit_short4", from_entry="short4", limit=65.64, stop=95.64)
+else if (high >= HL_4 + k)
+    strategy.order(id="long4", direction=strategy.long, qty=1, limit=90.64)
+    strategy.exit(id="exit_long4", from_entry="long4", limit=115.64, stop=85.64)
+
+// Уровень HL_5
+if (low <= HL_5 - k)
+    strategy.order(id="short5", direction=strategy.short, qty=1, limit=115.64)
+    strategy.exit(id="exit_short5", from_entry="short5", limit=90.64, stop=120.64)
+else if (high >= HL_5 + k)
+    strategy.order(id="long5", direction=strategy.long, qty=1, limit=115.64)
+    strategy.exit(id="exit_long5", from_entry="long5", limit=140.64, stop=110.64)
+
+// Уровень HL_6
+if (low <= HL_6 - k)
+    strategy.order(id="short6", direction=strategy.short, qty=1, limit=140.64)
+    strategy.exit(id="exit_short6", from_entry="short6", limit=115.64, stop=145.64)
+else if (high >= HL_6 + k)
+    strategy.order(id="long6", direction=strategy.long, qty=1, limit=140.64)
+    strategy.exit(id="exit_long6", from_entry="long6", limit=165.64, stop=135.64)
+    
+// Настройки уровней и диапазона
+float i = 2.5
+var float[] lowTouched = array.new_float(4, na)
+var float[] highTouched = array.new_float(4, na)
+var bool[] longOrderPlaced = array.new_bool(4, false)
+var bool[] shortOrderPlaced = array.new_bool(4, false)
+var float[] BL = array.new_float(4)
+var float[] TP = array.new_float(4)
+var float[] SL_long = array.new_float(4)
+var float[] SL_short = array.new_float(4)
+
+// Заполнение массивов значениями
+array.set(BL, 0, 85.64)
+array.set(BL, 1, 80.64)
+array.set(BL, 2, 75.64)
+array.set(BL, 3, 70.64)
+
+array.set(TP, 0, 88.14)
+array.set(TP, 1, 83.14)
+array.set(TP, 2, 78.14)
+array.set(TP, 3, 73.14)
+
+array.set(SL_long, 0, 80.64)
+array.set(SL_long, 1, 75.64)
+array.set(SL_long, 2, 70.64)
+array.set(SL_long, 3, 65.64)
+
+array.set(SL_short, 0, 90.64)
+array.set(SL_short, 1, 85.64)
+array.set(SL_short, 2, 80.64)
+array.set(SL_short, 3, 75.64)
+
+// Отображение уровней
+BL_1 = 85.64
+BL_2 = 80.64
+BL_3 = 75.64
+BL_4 = 70.64
+hline(BL_1, title="HL_6", color=#ffffff, linewidth=2, linestyle=hline.style_dotted)
+hline(BL_2, title="HL_6", color=#ffffff, linewidth=2, linestyle=hline.style_dotted)
+hline(BL_3, title="HL_6", color=#ffffff, linewidth=2, linestyle=hline.style_dotted)
+hline(BL_4, title="HL_6", color=#ffffff, linewidth=2, linestyle=hline.style_dotted)
+    
+
+// Функция для сброса переменных
+reset_variables(index) =>
+    array.set(lowTouched, index, na)
+    array.set(highTouched, index, na)
+    array.set(longOrderPlaced, index, false)
+    array.set(shortOrderPlaced, index, false)
+
+// Сброс переменных после закрытия позиции
+for j = 0 to 3
+    if (strategy.closedtrades > 0 and strategy.closedtrades.exit_bar_index(strategy.closedtrades - 1) == bar_index)
+        reset_variables(j)
+
+// Проверка касания уровня и установка переменных
+for j = 0 to 3
+    if (low <= array.get(BL, j) and na(array.get(lowTouched, j)))
+        array.set(lowTouched, j, array.get(BL, j))
+
+    if (high >= array.get(BL, j) and na(array.get(highTouched, j)))
+        array.set(highTouched, j, array.get(BL, j))
+
+    // Установка ордера long после касания уровня
+    if (not na(array.get(lowTouched, j)) and high >= array.get(lowTouched, j) + i and not array.get(longOrderPlaced, j))
+        strategy.order(id="longBL" + str.tostring(j+1), direction=strategy.long, qty=1, limit=array.get(BL, j))
+        strategy.exit(id="exit_longBL" + str.tostring(j+1), from_entry="longBL" + str.tostring(j+1), limit=array.get(TP, j), stop=array.get(SL_long, j))
+        reset_variables(j)
+
+    // Установка ордера short после касания уровня
+    if (not na(array.get(highTouched, j)) and low <= array.get(highTouched, j) - i and not array.get(shortOrderPlaced, j))
+        strategy.order(id="shortBL" + str.tostring(j+1), direction=strategy.short, qty=1, limit=array.get(BL, j))
+        strategy.exit(id="exit_shortBL" + str.tostring(j+1), from_entry="shortBL" + str.tostring(j+1), limit=array.get(TP, j), stop=array.get(SL_short, j))
+        reset_variables(j)
+
+
+
+        --------------------------
+        //@version=5
+strategy("Single Trade Strategy", overlay=true)
+
+// Входные параметры
+HL_1 = 15.64
+HL_2 = 40.64
+HL_3 = 65.64
+HL_4 = 90.64
+HL_5 = 115.64
+HL_6 = 140.64
+
+// Уровни поддержки и сопротивления = 25
+hline(HL_1, title="HL_1", color=color.blue, linewidth=2, linestyle=hline.style_solid)
+hline(HL_2, title="HL_2", color=color.blue, linewidth=2, linestyle=hline.style_solid)
+hline(HL_3, title="HL_3", color=color.blue, linewidth=2, linestyle=hline.style_solid)
+hline(HL_4, title="HL_4", color=color.blue, linewidth=2, linestyle=hline.style_solid)
+hline(HL_5, title="HL_5", color=color.blue, linewidth=2, linestyle=hline.style_solid)
+hline(HL_6, title="HL_6", color=color.blue, linewidth=2, linestyle=hline.style_solid)
+
+float k = 5.00
+bool s = false  // Инициализация переменной s как false
+
+// Уровень HL_3
+if low <= HL_3 - k
+    strategy.order(id="short3", direction=strategy.short, qty=1, limit=65.64)
+    strategy.exit(id="exit_short3", from_entry="short3", limit=40.64, stop=70.64)
+else if high >= HL_3 + k
+    strategy.order(id="long3", direction=strategy.long, qty=1, limit=65.64)
+    strategy.exit(id="exit_long3", from_entry="long3", limit=90.64, stop=60.64)
+
+
+// Уровень HL_2
+if low <= HL_2 - k
+    strategy.order(id="short2", direction=strategy.short, qty=1, limit=40.64)
+    strategy.exit(id="exit_short2", from_entry="short2", limit=15.64, stop=45.64)
+else if high >= HL_2 + k
+    strategy.order(id="long2", direction=strategy.long, qty=1, limit=40.64)
+    strategy.exit(id="exit_long2", from_entry="long2", limit=65.64, stop=35.64)
+
+        // Сбрасываем s в false после выполнения действий
+
+
+// Уровень HL_1
+if low <= HL_1 - k
+    strategy.order(id="short1", direction=strategy.short, qty=1, limit=15.64)
+    strategy.exit(id="exit_short1", from_entry="short1", limit=5.64, stop=20.64)
+else if high >= HL_1 + k
+    strategy.order(id="long1", direction=strategy.long, qty=1, limit=15.64)
+    strategy.exit(id="exit_long1", from_entry="long1", limit=40.64, stop=10.64)
+
+        // Сбрасываем s в false после выполнения действий
+    
+
+// Уровень HL_4
+if low <= HL_4 - k
+    strategy.order(id="short4", direction=strategy.short, qty=1, limit=90.64)
+    strategy.exit(id="exit_short4", from_entry="short4", limit=65.64, stop=95.64)
+else if high >= HL_4 + k
+    strategy.order(id="long4", direction=strategy.long, qty=1, limit=90.64)
+    strategy.exit(id="exit_long4", from_entry="long4", limit=115.64, stop=85.64)
+
+        // Сбрасываем s в false после выполнения действий
+    
+
+// Уровень HL_5
+if low <= HL_5 - k
+    strategy.order(id="short5", direction=strategy.short, qty=1, limit=115.64)
+    strategy.exit(id="exit_short5", from_entry="short5", limit=90.64, stop=120.64)
+else if high >= HL_5 + k
+    strategy.order(id="long5", direction=strategy.long, qty=1, limit=115.64)
+    strategy.exit(id="exit_long5", from_entry="long5", limit=140.64, stop=110.64)
+
+       // Сбрасываем s в false после выполнения действий
+    
+
+// Уровень HL_6
+if low <= HL_6 - k
+    strategy.order(id="short6", direction=strategy.short, qty=1, limit=140.64)
+    strategy.exit(id="exit_short6", from_entry="short6", limit=115.64, stop=145.64)
+else if high >= HL_6 + k
+    strategy.order(id="long6", direction=strategy.long, qty=1, limit=140.64)
+    strategy.exit(id="exit_long6", from_entry="long6", limit=165.64, stop=135.64)
+    

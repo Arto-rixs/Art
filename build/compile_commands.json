@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/arthur/Art/build",
+  "command": "/usr/bin/c++ -DTGUI_DYNAMIC  -g -o CMakeFiles/MyProject.dir/cline.cpp.o -c /home/arthur/Art/cline.cpp",
+  "file": "/home/arthur/Art/cline.cpp"
+}
+]

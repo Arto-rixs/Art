@@ -1,0 +1,19 @@
+Connected to server
+DealsTable button pressed, sending command: OnAllTrade
+Sending command to server: OnAllTrade
+
+Command sent successfully
+Received data: Heartbeat
+Heartbeat
+Received trade: {"price":82.42,"datetime":{"min":50,"mcs":974000,"year":2024,"day":14,"hour":10,"sec":23,"month":6},"flags":1026,"qty":1,"trade_num":1.9607850703651e+18}
+Received trade: {"price":82.42,"datetime":{"min":50,"mcs":974000,"year":2024,"day":14,"hour":10,"sec":23,"month":6},"flags":1026,"qty":1,"trade_num":1.9607850703651e+18}
+Heartbeat
+Heartbeat
+Heartbeat
+Heartbeat
+
+
+
+
+
+        

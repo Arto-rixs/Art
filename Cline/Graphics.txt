@@ -1,0 +1,107 @@
+1.sf::RenderWindow:
+
+    Класс для создания окна, в которое можно рисовать объекты.
+    Возможности: Создание окна, управление событием, рисование графических объектов.
+    Синтаксис:
+    sf::RenderWindow window(sf::VideoMode(800, 600), "My Window");
+while (window.isOpen()) {
+    sf::Event event;
+    while (window.pollEvent(event)) {
+        if (event.type == sf::Event::Closed)
+            window.close();
+    }
+    window.clear();
+    // рисование объектов
+    window.display();
+}
+
+2.sf::Texture:
+
+    Класс для загрузки и управления текстурами.
+    Возможности: Загрузка текстур из файлов, создание текстур в памяти, связывание текстур с объектами.
+    Синтаксис:
+    
+sf::Texture texture;
+if (!texture.loadFromFile("image.png")) {
+    // обработка ошибки
+}
+
+3.sf::Sprite:
+
+    Класс для отображения текстур на экране.
+    Возможности: Установка текстуры, управление положением, масштабированием и вращением спрайта.
+    Синтаксис:
+
+    sf::Sprite sprite;
+sprite.setTexture(texture);
+sprite.setPosition(100, 100);
+window.draw(sprite);
+
+4.sf::Shape (и его производные классы, такие как sf::RectangleShape, sf::CircleShape, sf::ConvexShape):
+
+    Базовый класс для всех форм.
+    Возможности: Создание и настройка форм различных видов.
+    Синтаксис:
+    sf::RectangleShape rectangle(sf::Vector2f(100, 50));
+rectangle.setFillColor(sf::Color::Green);
+window.draw(rectangle);
+
+5.sf::Text:
+
+    Класс для отображения текста на экране.
+    Возможности: Установка шрифта, размера, цвета текста.
+    Синтаксис:
+    sf::Font font;
+if (!font.loadFromFile("arial.ttf")) {
+    // обработка ошибки
+}
+sf::Text text("Hello, SFML", font, 30);
+text.setFillColor(sf::Color::White);
+window.draw(text);
+
+6.Класс для загрузки и управления шрифтами.
+Возможности: Загрузка шрифтов из файлов и ресурсов памяти.
+Синтаксис:
+sf::Font font;
+if (!font.loadFromFile("arial.ttf")) {
+    // обработка ошибки
+}
+
+7.sf::View:
+
+    Класс для управления видом на сцену (камера).
+    Возможности: Управление областью просмотра, масштабированием и вращением.
+    Синтаксис:
+
+    sf::View view(sf::FloatRect(0, 0, 800, 600));
+window.setView(view);
+
+8.sf::RenderTexture:
+
+    Класс для рендеринга в текстуру.
+    Возможности: Рисование графических объектов в текстуру, использование текстуры для последующего отображения.
+    Синтаксис:
+    sf::RenderTexture renderTexture;
+renderTexture.create(800, 600);
+renderTexture.clear();
+renderTexture.draw(sprite);
+renderTexture.display();
+
+9.sf::VertexArray:
+
+    Класс для хранения и управления массивом вершин.
+    Возможности: Создание сложных примитивов, таких как линии, треугольники и квадраты.
+    Синтаксис:
+    sf::VertexArray vertices(sf::Triangles, 3);
+vertices[0].position = sf::Vector2f(10, 10);
+vertices[1].position = sf::Vector2f(100, 10);
+vertices[2].position = sf::Vector2f(100, 100);
+window.draw(vertices);
+
+10.sf::Color:
+
+    Класс для управления цветами.
+    Возможности: Создание и управление цветами (RGBA).
+    Синтаксис:
+    sf::Color color(255, 0, 0, 255); // красный цвет
+

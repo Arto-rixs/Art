@@ -73,15 +73,15 @@ CMakeFiles/MyProject.dir/cline.cpp.o: CMakeFiles/MyProject.dir/flags.make
 CMakeFiles/MyProject.dir/cline.cpp.o: ../cline.cpp
 CMakeFiles/MyProject.dir/cline.cpp.o: CMakeFiles/MyProject.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arthur/Art/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MyProject.dir/cline.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyProject.dir/cline.cpp.o -MF CMakeFiles/MyProject.dir/cline.cpp.o.d -o CMakeFiles/MyProject.dir/cline.cpp.o -c /home/arthur/Art/cline.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyProject.dir/cline.cpp.o -MF CMakeFiles/MyProject.dir/cline.cpp.o.d -o CMakeFiles/MyProject.dir/cline.cpp.o -c /home/arthur/Art/cline.cpp
 
 CMakeFiles/MyProject.dir/cline.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MyProject.dir/cline.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/arthur/Art/cline.cpp > CMakeFiles/MyProject.dir/cline.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/arthur/Art/cline.cpp > CMakeFiles/MyProject.dir/cline.cpp.i
 
 CMakeFiles/MyProject.dir/cline.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MyProject.dir/cline.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arthur/Art/cline.cpp -o CMakeFiles/MyProject.dir/cline.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arthur/Art/cline.cpp -o CMakeFiles/MyProject.dir/cline.cpp.s
 
 # Object files for target MyProject
 MyProject_OBJECTS = \

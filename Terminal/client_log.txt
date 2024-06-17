@@ -1,0 +1,10 @@
+Connected to server
+DealsTable button pressed, sending command: OnAllTrade
+Sending command to server: OnAllTrade
+
+Command sent successfully
+Received data: []
+
+Processing response: []
+
+JSON parsed successfully

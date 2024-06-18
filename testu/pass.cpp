@@ -1,2 +1,2 @@
-art944602@gmail.com = 806625115621sL
+art944602@gmail.com
 rgvbtnh4@gmail.com 
